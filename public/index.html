@@ -22,6 +22,10 @@
         function renderMessage(message){
             $('.messages').append('<div class="message"><strong>' +message.author+ '</strong>:'+ message.message +' </div>')
         }
+        
+        socket.on('receivedMessages', function(message) {
+            renderMessage(message)
+        })
         $('#chat').submit(function(e){
             e.preventDefault()
             var author = $('input[name=username').val()
@@ -32,6 +36,7 @@
                     author,
                     message
                 }
+                renderMessage(messageObject)
                 socket.emit('sendMessage', messageObject)
             }
         })
