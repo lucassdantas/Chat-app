@@ -18,6 +18,10 @@
     </form>
     <script>
         var socket = io('http://localhost:3000')
+        
+        function renderMessage(message){
+            $('.messages').append('<div class="message"><strong>' +message.author+ '</strong>:'+ message.message +' </div>')
+        }
         $('#chat').submit(function(e){
             e.preventDefault()
             var author = $('input[name=username').val()
